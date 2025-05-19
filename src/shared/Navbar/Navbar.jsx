@@ -1,7 +1,7 @@
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -27,7 +27,9 @@ function Navbar() {
             </ul>
           </div>
 
-          <Button>Contact Us</Button>
+          <Link to="contact-us">
+            <Button>Contact Us</Button>
+          </Link>
 
           {/* <div className="flex gap-5">
           <div className="hidden md:block">
