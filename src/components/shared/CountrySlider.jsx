@@ -14,7 +14,7 @@ const CountrySlider = () => {
 
 
   return (
-    <div>
+    <div className="rounded-[20px] overflow-hidden">
       <Swiper
         pagination={pagination}
         modules={[Pagination]}
