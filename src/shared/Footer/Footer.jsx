@@ -52,8 +52,18 @@ function Footer() {
             Copyright © 2022 Coleridge advisors LLC. All Rights Reserved.
           </p>
           <div className="flex items-center gap-7 text-[#ffffff]/70">
-            <Link>Privacy Policy</Link>
-            <Link>Terms of Service</Link>
+            <Link
+              to="#"
+              className="hover:underline transition-all duration-500"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              to="#"
+              className="hover:underline transition-all duration-500"
+            >
+              Terms of Service
+            </Link>
           </div>
         </Container>
       </div>

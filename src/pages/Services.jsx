@@ -28,11 +28,15 @@ const Services = () => {
       </section>
 
       <section className="my-[120px]">
-        <Container className="grid grid-cols-2 gap-y-12 gap-x-16">
+        <Container className="grid grid-cols-2 gap-12">
           {Array(9)
             .fill(null)
             .map((_, idx) => (
-              <div className="bg-[#FBFBFB] p-5 rounded-3xl" key={idx} style={{ boxShadow: '-8px 8px 24px 0px rgba(0, 0, 0, 0.18)' }}>
+              <div
+                className="bg-[#FBFBFB] p-5 rounded-3xl"
+                key={idx}
+                style={{ boxShadow: "-8px 8px 24px 0px rgba(0, 0, 0, 0.18)" }}
+              >
                 <figure className="w-full aspect-[70/42] rounded-2xl overflow-hidden mb-6">
                   <img
                     src="https://i.ibb.co/8Dvydg3H/service1.png"

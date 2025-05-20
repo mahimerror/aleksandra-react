@@ -143,7 +143,7 @@ const NavItem = ({ children, path }) => (
     to={path}
     className={({ isActive }) =>
       cn(
-        "text-lg font-medium capitalize transition-all duration-300 flex justify-center relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:transform after:transition-transform after:duration-500",
+        "text-lg font-medium capitalize transition-all duration-300 flex justify-center relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:transform after:transition-transform after:duration-300",
         isActive
           ? "text-primary after:bg-primary after:scale-x-100"
           : "text-white hover:after:bg-white hover:after:scale-x-100"
