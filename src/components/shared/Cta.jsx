@@ -2,6 +2,7 @@ import banner from "@/images/cta.png";
 import Container from "../Container";
 import { Button } from "../ui/button";
 import { ArrowIcon } from "@/icons/Icon";
+import { Link } from "react-router-dom";
 
 const Cta = () => {
   return (
@@ -17,9 +18,11 @@ const Cta = () => {
           </p>
         </div>
         <div className="w-full flex justify-center">
-          <Button>
-            Contact US <ArrowIcon />
-          </Button>
+          <Link to="/contact-us">
+            <Button>
+              Contact US <ArrowIcon />
+            </Button>
+          </Link>
         </div>
       </Container>
 

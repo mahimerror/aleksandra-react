@@ -1,17 +1,34 @@
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-function Navbar() {
+function Navbar({ istrue = false }) {
+  const location = useLocation().pathname;
+  const [scrolled, setScrolled] = useState(istrue);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(istrue || window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [location]);
+
   return (
-    <header className=" fixed top-0 z-50 w-full">
+    <header className="fixed top-0 z-50 w-full">
       <Container>
-        <nav className="flex items-center justify-between gap-2 bg-white/20 p-6 rounded-b-3xl">
+        <nav
+          className={cn(
+            "flex items-center justify-between gap-2 p-6 rounded-b-3xl transition-colors duration-300",
+            scrolled ? "bg-[#1B365D] shadow-lg" : "bg-white/20"
+          )}
+        >
           <div className="w-[137px]"></div>
 
           <div className={`hidden md:block`}>
-            <ul className="flex list-none items-center gap-5">
+            <ul className="flex list-none items-center gap-8">
               <li>
                 <NavItem path="/">Home</NavItem>
               </li>
@@ -27,7 +44,7 @@ function Navbar() {
             </ul>
           </div>
 
-          <Link to="contact-us">
+          <Link to="/contact-us">
             <Button>Contact Us</Button>
           </Link>
 
@@ -126,8 +143,10 @@ const NavItem = ({ children, path }) => (
     to={path}
     className={({ isActive }) =>
       cn(
-        "text-lg  capitalize  transition-all duration-300 w-24 flex justify-center",
-        isActive ? "text-primary font-semibold" : "text-white font-medium"
+        "text-lg font-medium capitalize transition-all duration-300 flex justify-center relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:transform after:transition-transform after:duration-500",
+        isActive
+          ? "text-primary after:bg-primary after:scale-x-100"
+          : "text-white hover:after:bg-white hover:after:scale-x-100"
       )
     }
   >

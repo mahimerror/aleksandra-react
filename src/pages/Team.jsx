@@ -1,10 +1,12 @@
 import Container from "@/components/Container";
 import { RingIcon } from "@/icons/Icon";
 import person from "@/images/person.png";
+import Navbar from "@/shared/Navbar/Navbar";
 
 const Team = () => {
   return (
     <>
+      <Navbar istrue={true} />
       <section className="mt-[230px] mb-[120px] relative">
         <Container className="flex items-center">
           <div className="left relative">

@@ -6,7 +6,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-import { SliderBackIcon, SliderForwardIcon } from "@/icons/Icon";
+import { RightIcon, SliderBackIcon, SliderForwardIcon } from "@/icons/Icon";
+import { Button } from "../ui/button";
 
 const ServicesSection = () => {
   return (
@@ -28,7 +29,6 @@ const ServicesSection = () => {
           slidesPerView={4}
           spaceBetween={30}
           loop={true}
-          centeredSlides={true}
           modules={[Navigation]}
           className="mySwiper"
           navigation={{
@@ -55,6 +55,12 @@ const ServicesSection = () => {
               </SwiperSlide>
             ))}
         </Swiper>
+
+        <div className="flex justify-center mt-10">
+          <Button className="max-w-[260px] w-full text-lg font-semibold">
+            See All <RightIcon />
+          </Button>
+        </div>
       </Container>
     </div>
   );
