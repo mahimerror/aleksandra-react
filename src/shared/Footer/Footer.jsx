@@ -1,14 +1,27 @@
 import Container from "@/components/Container";
+import useFetchData from "@/hooks/useFetchData";
 import footerBg from "@/images/footer.png";
+import { MainContext } from "@/provider/ContextProvider";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 function Footer() {
+  const { data, isPending } = useContext(MainContext);
+
+  const { data: dynamicPages } = useFetchData(
+    `${import.meta.env.VITE_BASE_URL}/dynamic-page/list`
+  );
+
+  console.log(dynamicPages, "dynamicPages");
   return (
     <div className="relative w-full">
       <div className="relative z-10">
         <Container className="flex items-center gap-10 py-10">
           <p className="font-medium text-lg text-white">Find us</p>
-          <Link to="#" className="group flex gap-2 items-center">
+          <Link
+            to={isPending || !data?.facebook_link ? "#" : data.facebook_link}
+            className="group flex gap-2 items-center"
+          >
             <div className="size-[30px] flex justify-center items-center bg-white group-hover:bg-[#CBA135] rounded-full transition-all duration-300">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +37,10 @@ function Footer() {
             <p className="text-white font-medium">Facebook</p>
           </Link>
 
-          <Link to="#" className="group flex gap-2 items-center">
+          <Link
+            to={isPending || !data?.linkedin_link ? "#" : data.linkedin_link}
+            className="group flex gap-2 items-center"
+          >
             <div className="size-[30px] flex justify-center items-center bg-white group-hover:bg-[#CBA135] rounded-full transition-all duration-300">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -49,21 +65,28 @@ function Footer() {
 
         <Container className="flex items-center justify-between gap-10 py-7 text-sm">
           <p className=" text-[#FFFFFF]/70">
-            Copyright © 2022 Coleridge advisors LLC. All Rights Reserved.
+            {isPending || !data?.copyright_text
+              ? "Copyright © 2025 Coleridge advisors LLC. All Rights Reserved."
+              : data.copyright_text}
           </p>
           <div className="flex items-center gap-7 text-[#ffffff]/70">
+            {dynamicPages?.data?.length > 0 &&
+              dynamicPages?.data?.map((item, idx) => (
+                <Link
+                  to={`/${item.page_slug}`}
+                  key={idx}
+                  className="hover:underline transition-all duration-500"
+                >
+                  {item.page_title}
+                </Link>
+              ))}
+{/* 
             <Link
-              to="#"
-              className="hover:underline transition-all duration-500"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              to="#"
+              to="/terms-conditions"
               className="hover:underline transition-all duration-500"
             >
               Terms of Service
-            </Link>
+            </Link> */}
           </div>
         </Container>
       </div>

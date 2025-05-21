@@ -5,9 +5,11 @@ const CountrySliderSection = () => {
   return (
     <section className="my-[120px]">
       <Container className={"grid grid-cols-3 gap-5"}>
-        <CountrySlider />
-        <CountrySlider />
-        <CountrySlider />
+        <>
+          <CountrySlider />
+          <CountrySlider />
+          <CountrySlider />
+        </>
       </Container>
     </section>
   );

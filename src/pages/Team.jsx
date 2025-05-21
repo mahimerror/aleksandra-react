@@ -5,7 +5,7 @@ import Navbar from "@/shared/Navbar/Navbar";
 
 const Team = () => {
   return (
-    <>
+    <div className="min-h-screen">
       <Navbar istrue={true} />
       <section className="mt-[230px] mb-[120px] relative">
         <Container className="flex items-center">
@@ -64,7 +64,7 @@ const Team = () => {
           </div>
         </Container>
       </section>
-    </>
+    </div>
   );
 };
 

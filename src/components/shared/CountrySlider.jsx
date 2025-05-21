@@ -12,7 +12,6 @@ const CountrySlider = () => {
     },
   };
 
-
   return (
     <div className="rounded-[20px] overflow-hidden">
       <Swiper

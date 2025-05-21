@@ -2,14 +2,21 @@ import Container from "../Container";
 import { useRef, useState } from "react";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { PropagateLoader } from "react-spinners";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import { RightIcon, SliderBackIcon, SliderForwardIcon } from "@/icons/Icon";
 import { Button } from "../ui/button";
+import useFetchData from "@/hooks/useFetchData";
+import { Link } from "react-router-dom";
 
 const ServicesSection = () => {
+  const { data } = useFetchData(
+    `${import.meta.env.VITE_BASE_URL}/service/list`
+  );
+
   return (
     <div className="my-[120px]">
       <Container className="">
@@ -25,40 +32,52 @@ const ServicesSection = () => {
           </div>
         </div>
 
-        <Swiper
-          slidesPerView={4}
-          spaceBetween={30}
-          loop={true}
-          modules={[Navigation]}
-          className="mySwiper"
-          navigation={{
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          }}
-        >
-          {Array(9)
-            .fill(null)
-            .map((_, idx) => (
-              <SwiperSlide key={idx}>
-                <div className="p-6 rounded-[30px] bg-[#FCFCFC] border border-[#DFE3E8]">
-                  <figure className="">
-                    <img
-                      src="https://i.ibb.co/4gCZ7QJv/Frame-2147227615.png"
-                      alt=""
-                      className="mx-auto"
-                    />
-                  </figure>
-                  <h3 className="text-xl font-semibold text-center mt-6">
-                    Service 1
-                  </h3>
-                </div>
-              </SwiperSlide>
-            ))}
-        </Swiper>
+        <div className="rounded-[30px] overflow-hidden">
+          {data?.data ? (
+            <Swiper
+              slidesPerView={4}
+              spaceBetween={30}
+              loop={true}
+              modules={[Navigation]}
+              className="mySwiper"
+              navigation={{
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+              }}
+            >
+              {data?.data?.map((item, idx) => (
+                <SwiperSlide key={idx}>
+                  <div className="p-6 rounded-[30px] bg-[#FCFCFC] border border-[#DFE3E8]">
+                    <figure className="h-[160px]">
+                      <img
+                        src={
+                          item?.illustration
+                            ? item.illustration
+                            : "https://i.ibb.co/4gCZ7QJv/Frame-2147227615.png"
+                        }
+                        alt=""
+                        className="mx-auto"
+                      />
+                    </figure>
+                    <h3 className="text-xl font-semibold text-center mt-6">
+                      {item.title}
+                    </h3>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          ) : (
+            <div className="flex items-center justify-center h-[262px]">
+              <PropagateLoader color="#DDA923" size={40} />
+            </div>
+          )}
+        </div>
 
         <div className="flex justify-center mt-10">
-          <Button className="max-w-[260px] w-full text-lg font-semibold">
-            See All <RightIcon />
+          <Button to="/services" asChild>
+            <Link className="max-w-[200px] w-full text-lg font-semibold">
+              See All <RightIcon />
+            </Link>
           </Button>
         </div>
       </Container>

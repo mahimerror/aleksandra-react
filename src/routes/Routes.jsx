@@ -5,6 +5,7 @@ import Services from "@/pages/Services";
 import AboutUs from "@/pages/AboutUs";
 import Team from "./../pages/Team";
 import ContactUs from "@/pages/ContactUs";
+import DynamicPage from "@/pages/DynamicPage";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: "contact-us",
         element: <ContactUs />,
+      },
+      {
+        path: "/:slug",
+        element: <DynamicPage />,
       },
     ],
   },
