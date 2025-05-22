@@ -12,7 +12,6 @@ function Footer() {
     `${import.meta.env.VITE_BASE_URL}/dynamic-page/list`
   );
 
-  console.log(dynamicPages, "dynamicPages");
   return (
     <div className="relative w-full">
       <div className="relative z-10">
@@ -80,7 +79,7 @@ function Footer() {
                   {item.page_title}
                 </Link>
               ))}
-{/* 
+            {/* 
             <Link
               to="/terms-conditions"
               className="hover:underline transition-all duration-500"

@@ -1,10 +1,8 @@
 import Container from "../Container";
-import { useRef, useState } from "react";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { PropagateLoader } from "react-spinners";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import { RightIcon, SliderBackIcon, SliderForwardIcon } from "@/icons/Icon";
@@ -13,7 +11,7 @@ import useFetchData from "@/hooks/useFetchData";
 import { Link } from "react-router-dom";
 
 const ServicesSection = () => {
-  const { data } = useFetchData(
+  const { data, isPending } = useFetchData(
     `${import.meta.env.VITE_BASE_URL}/service/list`
   );
 
@@ -66,9 +64,13 @@ const ServicesSection = () => {
                 </SwiperSlide>
               ))}
             </Swiper>
-          ) : (
+          ) : isPending ? (
             <div className="flex items-center justify-center h-[262px]">
               <PropagateLoader color="#DDA923" size={40} />
+            </div>
+          ) : (
+            <div className="flex items-center justify-center h-[262px]">
+              <p className="text-red-500">Something went wrong!</p>
             </div>
           )}
         </div>
