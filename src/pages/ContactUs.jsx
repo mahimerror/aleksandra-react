@@ -3,6 +3,7 @@ import banner from "@/images/banner.png";
 import formBg from "@/images/formBg.png";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useCountries } from "use-react-countries";
 import {
   Select,
   SelectContent,
@@ -52,8 +53,33 @@ const ContactUs = () => {
   });
 
   function onSubmit(values) {
-    console.log(values);
+    const data = {
+      name: values.userName,
+      company: values.companyName,
+      email: values.email,
+      country: values.country,
+      contact_message: values.message || "",
+    };
+    console.log("Form Data:", data);
+    fetch(`${import.meta.env.VITE_BASE_URL}/contact/send`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log("Success:", result);
+      })
+      .catch((error) => {
+        // handle error
+        console.error("Error:", error);
+      });
   }
+
+  const { countries } = useCountries();
+
   return (
     <>
       <section className="banner relative pt-[180px] pb-[350px] min-h-[650px]">
@@ -152,9 +178,13 @@ const ContactUs = () => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="m@example.com">USA</SelectItem>
-                        <SelectItem value="m@google.com">Canada</SelectItem>
-                        <SelectItem value="m@support.com">Australia</SelectItem>
+                        {[...countries]
+                          .sort((a, b) => a.name.localeCompare(b.name))
+                          .map((country) => (
+                            <SelectItem key={country.code} value={country.name}>
+                              {country.name}
+                            </SelectItem>
+                          ))}
                       </SelectContent>
                     </Select>
                     <FormMessage />

@@ -4,13 +4,12 @@ import { RingIcon } from "@/icons/Icon";
 import person from "@/images/person.png";
 import Navbar from "@/shared/Navbar/Navbar";
 import { PropagateLoader } from "react-spinners";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 
 const Team = () => {
   const { data, isPending } = useFetchData(
     `${import.meta.env.VITE_BASE_URL}/our-team/show/1`
   );
-
 
   return (
     <div className="min-h-screen">
@@ -24,11 +23,11 @@ const Team = () => {
           <Container className="flex items-center">
             <div className="left relative">
               <div className="relative overflow-hidden -translate-x-24">
-                <figure className="">
+                <figure className="min-w-[480px] min-h-[380px]">
                   <img
                     src={data?.data?.image ? data.data.image : person}
                     alt=""
-                    className=""
+                    className="object-cover"
                   />
                 </figure>
                 <div className="bg-[#F3E8CD] rounded-t-xl relative">
