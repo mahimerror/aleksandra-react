@@ -16,7 +16,7 @@ const ServicesSection = () => {
   );
 
   return (
-    <div className="my-[120px]">
+    <div className="my-10 md:my-16 lg:my-20 xl:my-[120px]">
       <Container className="">
         <h2 className="font-bold text-[#212B36] text-[48px] text-center">
           Our Services
@@ -44,7 +44,7 @@ const ServicesSection = () => {
               }}
             >
               {data?.data?.map((item, idx) => (
-                <SwiperSlide key={idx}>
+                <SwiperSlide key={idx} className="">
                   <div className="p-6 rounded-[30px] bg-[#FCFCFC] border border-[#DFE3E8]">
                     <figure className="h-[160px]">
                       <img

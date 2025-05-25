@@ -3,10 +3,13 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { RxCross2 } from "react-icons/rx";
+import { IoIosMenu } from "react-icons/io";
 
 function Navbar({ istrue = false }) {
   const location = useLocation().pathname;
   const [scrolled, setScrolled] = useState(istrue);
+  const [isOpen, setOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,9 +28,9 @@ function Navbar({ istrue = false }) {
             scrolled ? "bg-[#1B365D] shadow-lg" : "bg-white/20"
           )}
         >
-          <div className="w-[137px]"></div>
+          <div className="w-[137px] hidden lg:block"></div>
 
-          <div className={`hidden md:block`}>
+          <div className="">
             <ul className="flex list-none items-center gap-8">
               <li>
                 <NavItem path="/">Home</NavItem>
@@ -48,88 +51,51 @@ function Navbar({ istrue = false }) {
             <Button>Contact Us</Button>
           </Link>
 
-          {/* <div className="flex gap-5">
-          <div className="hidden md:block">
-            {isAuthenticated ? (
-              <NotifySection />
-            ) : (
-              <div className="flex items-center gap-2">
-                <Button
-                  variant="outline"
-                  className="text-sm xl:text-base"
-                  asChild
-                >
-                  <Link to="/login">Sign in</Link>
-                </Button>
-                <Button asChild className="text-sm xl:text-base">
-                  <Link to="/pro-register">Join as a Pro</Link>
-                </Button>
-              </div>
-            )}
-          </div>
+          <div className="flex gap-5">
+            <div
+              className="bg-white rounded-sm p-2"
+              onClick={() => setOpen(true)}
+            >
+              <IoIosMenu size={24} className=" text-[#DDA923] cursor-pointer" />
+            </div>
 
-          <button onClick={() => setOpen(!isOpen)} className="md:hidden">
-            <RxHamburgerMenu className="text-2xl" />
-          </button>
+            <div
+              onClick={() => setOpen(false)}
+              className={`fixed inset-0 z-50 bg-black/30 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+                isOpen ? "opacity-100" : "pointer-events-none opacity-0"
+              }`}
+            ></div>
 
-          <div
-            onClick={() => setOpen(false)}
-            className={`fixed inset-0 z-50 bg-black/30 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
-              isOpen ? "opacity-100" : "pointer-events-none opacity-0"
-            }`}
-          ></div>
-
-          <div
-            className={`fixed right-0 top-0 z-50 h-full w-[270px] border-transparent bg-white px-5 py-6 shadow-lg transition-transform duration-500 md:w-[300px] md:hidden ${
-              isOpen ? "translate-x-0" : "translate-x-full"
-            }`}
-          >
-            <div className="flex h-full flex-col justify-between">
-              <div>
-                <div className="flex justify-between">
-                  <SiteLogo className="w-30" />
-                  <button onClick={() => setOpen(false)}>
-                    <RxCross2 size={24} />
-                  </button>
-                </div>
-                <ul className="font-syne mt-10 space-y-4 text-base">
-                  {[
-                    { to: "/", label: "Home" },
-                    { to: "/about-us", label: "About us" },
-                    { to: "/services", label: "Services" },
-                    { to: "/contact", label: "Contact" },
-                  ].map((item) => (
-                    <li key={item.to}>
-                      <NavLink
-                        onClick={() => setOpen(false)}
-                        to={item.to}
-                        className={({ isActive }) =>
-                          `text-md w-full font-poppins font-medium capitalize transition-colors duration-300 ${
-                            isActive ? "text-accent" : "hover:text-accent"
-                          }`
-                        }
-                      >
-                        {item.label}
-                      </NavLink>
+            <div
+              className={`fixed right-0 top-0 z-50 h-full w-[270px] border-transparent bg-white px-5 py-6 shadow-lg transition-transform duration-500 md:w-[300px] md:hidden ${
+                isOpen ? "translate-x-0" : "translate-x-full"
+              }`}
+            >
+              <div className="flex h-full flex-col justify-between">
+                <div>
+                  <div className="flex justify-between">
+                    <button onClick={() => setOpen(false)}>
+                      <RxCross2 size={24} />
+                    </button>
+                  </div>
+                  <ul className="mt-10 space-y-4 text-base">
+                    <li>
+                      <MobNavItem path="/">Home</MobNavItem>
                     </li>
-                  ))}
-                </ul>
-              </div>
-              {!isAuthenticated ? (
-                <div className="flex flex-col items-center gap-2">
-                  <Button className="w-full" variant="outline" asChild>
-                    <Link to="/login">Sign in</Link>
-                  </Button>
-                  <Button className="w-full" asChild>
-                    <Link to="/pro-register">Join as a Pro</Link>
-                  </Button>
+                    <li>
+                      <MobNavItem path="/services">Services</MobNavItem>
+                    </li>
+                    <li>
+                      <MobNavItem path="/about-us">About us</MobNavItem>
+                    </li>
+                    <li>
+                      <MobNavItem path="/team">Team</MobNavItem>
+                    </li>
+                  </ul>
                 </div>
-              ) : (
-                <NotifySection />
-              )}
+              </div>
             </div>
           </div>
-        </div> */}
         </nav>
       </Container>
     </header>
@@ -147,6 +113,22 @@ const NavItem = ({ children, path }) => (
         isActive
           ? "text-primary after:bg-primary after:scale-x-100"
           : "text-white hover:after:bg-white hover:after:scale-x-100"
+      )
+    }
+  >
+    {children}
+  </NavLink>
+);
+
+const MobNavItem = ({ children, path }) => (
+  <NavLink
+    to={path}
+    className={({ isActive }) =>
+      cn(
+        "text-lg font-medium capitalize transition-all duration-300 flex justify-center relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:transform after:transition-transform after:duration-300",
+        isActive
+          ? "text-primary after:bg-primary after:scale-x-100"
+          : "text-[#1B365D] hover:after:bg-[#1B365D] hover:after:scale-x-100"
       )
     }
   >

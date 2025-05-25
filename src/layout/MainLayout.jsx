@@ -7,7 +7,7 @@ function MainLayout() {
   return (
     <div>
       <ScrollRestoration />
-      {location !== "/team" && <Navbar></Navbar>}
+      {/* {location !== "/team" && <Navbar></Navbar>} */}
       <Outlet></Outlet>
       <Footer></Footer>
     </div>

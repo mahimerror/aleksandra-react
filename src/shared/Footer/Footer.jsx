@@ -15,20 +15,18 @@ function Footer() {
   return (
     <div className="relative w-full">
       <div className="relative z-10">
-        <Container className="flex items-center gap-10 py-10">
+        <Container className="flex flex-wrap justify-center md:justify-start items-center gap-y-3 gap-x-4 sm:gap-6 lg:gap-10 py-5 sm:py-5 md:py-6 lg:py-8 xl:py-10">
           <p className="font-medium text-lg text-white">Find us</p>
           <Link
             to={isPending || !data?.facebook_link ? "#" : data.facebook_link}
-            className="group flex gap-2 items-center"
+            className="group flex gap-1 sm:gap-2 items-center"
           >
-            <div className="size-[30px] flex justify-center items-center bg-white group-hover:bg-[#CBA135] rounded-full transition-all duration-300">
+            <div className="size-6 md:size-[30px] flex justify-center items-center bg-white group-hover:bg-[#CBA135] rounded-full transition-all duration-300">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
                 viewBox="0 0 20 20"
                 fill="none"
-                className="fill-[#0B0D0F] group-hover:fill-white transition-all duration-300"
+                className="fill-[#0B0D0F] group-hover:fill-white transition-all duration-300 size-4 md:size-5"
               >
                 <path d="M11.2457 17.5V10.6689H13.7137L14.0806 7.99434H11.2457V6.29074C11.2457 5.51895 11.476 4.99053 12.6622 4.99053H14.1654V2.60599C13.434 2.53281 12.6989 2.49747 11.9633 2.50014C9.7818 2.50014 8.28401 3.74367 8.28401 6.02653V7.98934H5.83203V10.6639H8.28936V17.5H11.2457Z" />
               </svg>
@@ -38,16 +36,14 @@ function Footer() {
 
           <Link
             to={isPending || !data?.linkedin_link ? "#" : data.linkedin_link}
-            className="group flex gap-2 items-center"
+            className="group flex gap-1 sm:gap-2 items-center"
           >
-            <div className="size-[30px] flex justify-center items-center bg-white group-hover:bg-[#CBA135] rounded-full transition-all duration-300">
+            <div className="size-6 md:size-[30px] flex justify-center items-center bg-white group-hover:bg-[#CBA135] rounded-full transition-all duration-300">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
                 viewBox="0 0 20 20"
                 fill="none"
-                className="fill-[#0B0D0F] group-hover:fill-white transition-all duration-300"
+                className="fill-[#0B0D0F] group-hover:fill-white transition-all duration-300 size-4 md:size-5"
               >
                 <path
                   fillRule="evenodd"
@@ -62,13 +58,13 @@ function Footer() {
 
         <div className="border border-b border-[#FFFFFF]/10"></div>
 
-        <Container className="flex items-center justify-between gap-10 py-7 text-sm">
-          <p className=" text-[#FFFFFF]/70">
+        <Container className="flex flex-col lg:flex-row items-center md:items-start  lg:items-center justify-between gap-3 lg:gap-10 py-4 sm:py-4 md:py-5 lg:py-6 xl:py-7 text-sm">
+          <p className=" text-[#FFFFFF]/70 text-center">
             {isPending || !data?.copyright_text
               ? "Copyright © 2025 Coleridge advisors LLC. All Rights Reserved."
               : data.copyright_text}
           </p>
-          <div className="flex items-center gap-7 text-[#ffffff]/70">
+          <div className="flex items-center gap-4 md:gap-7 text-[#ffffff]/70">
             {dynamicPages?.data?.length > 0 &&
               dynamicPages?.data?.map((item, idx) => (
                 <Link

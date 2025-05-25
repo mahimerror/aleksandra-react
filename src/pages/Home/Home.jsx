@@ -16,7 +16,7 @@ function Home() {
 
   return (
     <>
-      <section className="banner relative pt-[240px] pb-[300px] mb-[120px]">
+      {/* <section className="banner relative pt-[240px] pb-[300px] mb-[120px]">
         <Container className="flex items-center justify-between gap-24 z-10 relative">
           <div className="w-[35%]">
             <img src={logo} alt="Logo" className="w-full" />
@@ -36,11 +36,6 @@ function Home() {
               </h1>
               <BelowTitleIcon className=" absolute -bottom-2 right-1/2 -z-10" />
             </div>
-            {/* <p className="text-white text-right mt-6 w-[80%]">
-              Running a business is difficult enough without overpaying for
-              essential utility services like gas, electricity, water, insurance
-              and more.
-            </p> */}
             <Link to="/services">
               <Button>
                 Explore Our Services <ArrowIcon />
@@ -56,9 +51,9 @@ function Home() {
             className="w-full h-full object-cover object-bottom"
           />
         </figure>
-      </section>
+      </section> */}
 
-      <CountrySliderSection />
+      {/* <CountrySliderSection /> */}
       <ServicesSection />
       <Cta />
     </>
