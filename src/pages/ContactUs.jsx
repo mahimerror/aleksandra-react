@@ -4,6 +4,7 @@ import formBg from "@/images/formBg.png";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCountries } from "use-react-countries";
+import { BeatLoader } from "react-spinners";
 import {
   Select,
   SelectContent,
@@ -26,6 +27,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowIcon } from "@/icons/Icon";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   userName: z.string().min(2, "Name is required").max(50, "Name too long"),
@@ -52,7 +55,11 @@ const ContactUs = () => {
     },
   });
 
-  function onSubmit(values) {
+  const [isLoading, setIsLoading] = useState(false);
+
+  async function onSubmit(values) {
+    setIsLoading(true);
+
     const data = {
       name: values.userName,
       company: values.companyName,
@@ -60,22 +67,29 @@ const ContactUs = () => {
       country: values.country,
       contact_message: values.message || "",
     };
-    console.log("Form Data:", data);
-    fetch(`${import.meta.env.VITE_BASE_URL}/contact/send`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log("Success:", result);
-      })
-      .catch((error) => {
-        // handle error
-        console.error("Error:", error);
-      });
+
+    try {
+      console.log("Form Data:", data);
+
+      const response = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/contact/send`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
+      const result = await response.json();
+      toast.success("Message sent successfully!");
+      console.log("Success:", result);
+    } catch (error) {
+      toast.error(`Error: ${error.message || "Something went wrong."}`);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   const { countries } = useCountries();
@@ -177,7 +191,7 @@ const ContactUs = () => {
                           <SelectValue placeholder="Select your Country" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
+                      <SelectContent side="bottom">
                         {[...countries]
                           .sort((a, b) => a.name.localeCompare(b.name))
                           .map((country) => (
@@ -240,19 +254,31 @@ const ContactUs = () => {
                 </p>
               </div>
               <div className="flex justify-center">
-                <Button type="submit" className="align-center">
-                  Explore Our Services <ArrowIcon />
+                <Button
+                  type="submit"
+                  className="align-center min-w-[226px]"
+                  disabled={isLoading}
+                >
+                  {isLoading ? (
+                    <BeatLoader color="#fff" size={16} />
+                  ) : (
+                    <>
+                      Explore Our Services <ArrowIcon />
+                    </>
+                  )}
                 </Button>
               </div>
             </form>
           </Form>
-          <figure className="absolute top-0 left-0 right-0 bottom-0 w-full h-full -z-10">
-            <img
-              src={formBg}
-              alt=""
-              className="w-full h-full obcject-cover object-center"
-            />
-          </figure>
+          <div className="absolute top-0 left-0 right-0 bottom-0 bg-[#DDE4E1] -z-10">
+            <figure className="w-full h-full">
+              <img
+                src={formBg}
+                alt=""
+                className="w-full h-full obcject-cover object-center"
+              />
+            </figure>
+          </div>
         </div>
       </section>
     </>
