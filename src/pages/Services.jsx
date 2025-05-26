@@ -13,13 +13,15 @@ const Services = () => {
 
   return (
     <>
-      <section className="banner relative py-[300px] mb-[120px] min-h-[650px]">
+      <section className="banner relative py-40 md:py-48 lg:py-60 xl:py-[300px] mb-10 md:mb-16 lg:mb-20 xl:mb-[120px]">
         <Container className="z-10 relative">
-          <h1 className="text-white text-[58px] font-extrabold text-center">
+          <h1 className="text-white text-[33px] md:text-[42px] lg:text-[50px] xl:text-[58px] font-extrabold text-center">
             Our Services
           </h1>
-          <div className="mx-auto mt-6 text-[#BDBDBD] flex items-center justify-center gap-4">
-            <Link to="/">Home</Link>
+          <div className="mx-auto mt-3 md:mt-4 lg:mt-5 xl:mt-6 text-[#BDBDBD] flex items-center justify-center gap-1.5 md:gap-3">
+            <Link to="/" className="hover:underline">
+              Home
+            </Link>
             <ForwardIcon />
             <p>Services</p>
           </div>
@@ -34,19 +36,19 @@ const Services = () => {
         </figure>
       </section>
 
-      <section className="my-[120px]">
+      <section className="my-10 md:my-16 lg:my-20 xl:my-[120px]">
         <Container>
           {data?.data ? (
-            <div className="grid grid-cols-2 gap-12">
+            <div className="grid md:grid-cols-2 gap-5 lg:gap-9 xl:gap-12">
               {data?.data?.map((item, idx) => (
                 <div
-                  className="bg-[#FBFBFB] p-5 rounded-3xl"
+                  className="bg-[#FBFBFB] p-4 md:p-5 rounded-3xl"
                   key={idx}
                   style={{
                     boxShadow: "-8px 8px 24px 0px rgba(0, 0, 0, 0.18)",
                   }}
                 >
-                  <figure className="w-full aspect-[70/42] rounded-2xl overflow-hidden mb-6">
+                  <figure className="w-full aspect-[70/42] rounded-2xl overflow-hidden mb-4 lg:mb-6">
                     <img
                       src={
                         item?.thumbnail
@@ -57,12 +59,12 @@ const Services = () => {
                       className="w-full h-full object-cover object-center"
                     />
                   </figure>
-                  <h2 className="text-4xl font-bold mb-4">{item.title}</h2>
-                  <p className="text-[#6D6B63] text-lg">
-                    We create content strategies that don’t just sound good—they
-                    rank. While many SEO providers chase competitive keywords
-                    without considering rankability, we focus on smart
-                    opportunities that your site can realistically win.
+                  <h2 className="text-[20px] md:text-[24px] lg:text-[28px] xl:text-[36px] font-bold mb-2 md:mb-3 lg:mb-4">
+                    {item.title || "Service Name"}
+                  </h2>
+                  <p className="text-[#6D6B63] text-sm lg:text-base xl:text-lg line-clamp-5">
+                    {item.description ||
+                      "We create content strategies that don&apos;t just sound good—they rank. While many SEO providers chase competitive keywords without considering rankability, we focus on smart opportunities that your site can realistically win."}
                   </p>
                 </div>
               ))}

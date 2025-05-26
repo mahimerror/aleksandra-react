@@ -96,13 +96,13 @@ const ContactUs = () => {
 
   return (
     <>
-      <section className="banner relative pt-[180px] pb-[350px] min-h-[650px]">
+      <section className="banner relative pt-32 md:pt-36 lg:pt-[160px] xl:pt-[180px] pb-[300px] md:pb-[310px] lg:pb-[320px] xl:pb-[350px]">
         <Container className="z-10 relative">
-          <h1 className="text-white text-[58px] font-extrabold text-center">
+          <h1 className="text-white text-[33px] md:text-[42px] lg:text-[50px] xl:text-[58px] font-extrabold text-center">
             Get in Touch
           </h1>
-          <div className="mx-auto mt-6 text-[#BDBDBD] flex items-center justify-center gap-4">
-            <p className="max-w-[680px] text-center text-base">
+          <div className="mx-auto mt-3 md:mt-4 lg:mt-5 xl:mt-6 text-[#BDBDBD] flex items-center justify-center gap-4">
+            <p className="max-w-[680px] text-center text-sm md:text-base">
               Contact us to learn more about how we can take financial
               management off your hands, discuss solutions for your business -
               or just have a casual chat.
@@ -119,159 +119,169 @@ const ContactUs = () => {
         </figure>
       </section>
 
-      <section className="-translate-y-[260px]">
-        <div className="max-w-[900px] p-[60px] mx-auto rounded-3xl overflow-hidden relative">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <FormField
-                  control={form.control}
-                  name="userName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Your Name*</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="text"
-                          placeholder="Your Full name"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="companyName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Company*</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="text"
-                          placeholder="Your company name"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email*</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="email"
-                        placeholder="example@mail.com"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="country"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Country*</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select your Country" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent side="bottom">
-                        {[...countries]
-                          .sort((a, b) => a.name.localeCompare(b.name))
-                          .map((country) => (
-                            <SelectItem key={country.code} value={country.name}>
-                              {country.name}
-                            </SelectItem>
-                          ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="message"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Add a short message (optional)</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        placeholder="Add your message here"
-                        className="resize-none"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <div className="space-y-[10px] !mb-10">
-                <FormField
-                  control={form.control}
-                  name="content"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-row items-start space-x-[10px] space-y-0">
-                      <FormControl>
-                        <Checkbox
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                        />
-                      </FormControl>
-                      <div className="leading-none">
-                        <FormLabel>
-                          Sign me up for relevant content and offers from
-                          Scaleup Finance.
-                        </FormLabel>
-                      </div>
-                    </FormItem>
-                  )}
-                />
-                <p className="text-[#454F5B]">
-                  You can unsubscribe from these communications at any time. For
-                  more information on how to unsubscribe, our privacy practices,
-                  and how we are committed to protecting and respecting your
-                  privacy, please review our Privacy Policy. By clicking submit
-                  below, you consent Scaleup Finance storing and processing your
-                  personal information submitted above to provide you with the
-                  services and information requested.
-                </p>
-              </div>
-              <div className="flex justify-center">
-                <Button
-                  type="submit"
-                  className="align-center min-w-[226px]"
-                  disabled={isLoading}
+      <section className="-translate-y-[260px] -mb-48 md:-mb-40 lg:-mb-32 xl:-mb-20">
+        <Container>
+          <div className="max-w-[900px] py-6 px-5 md:p-10 lg:p-[60px] mx-auto rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden relative bg-[#DDE4E1]">
+            <div className="relative z-10">
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="space-y-3.5 md:space-y-5"
                 >
-                  {isLoading ? (
-                    <BeatLoader color="#fff" size={16} />
-                  ) : (
-                    <>
-                      Explore Our Services <ArrowIcon />
-                    </>
-                  )}
-                </Button>
-              </div>
-            </form>
-          </Form>
-          <div className="absolute top-0 left-0 right-0 bottom-0 bg-[#DDE4E1] -z-10">
-            <figure className="w-full h-full">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 md:gap-5">
+                    <FormField
+                      control={form.control}
+                      name="userName"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Your Name*</FormLabel>
+                          <FormControl>
+                            <Input
+                              type="text"
+                              placeholder="Your Full name"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="companyName"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Company*</FormLabel>
+                          <FormControl>
+                            <Input
+                              type="text"
+                              placeholder="Your company name"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email*</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="email"
+                            placeholder="example@mail.com"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="country"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Country*</FormLabel>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select your Country" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent side="bottom">
+                            {[...countries]
+                              .sort((a, b) => a.name.localeCompare(b.name))
+                              .map((country) => (
+                                <SelectItem
+                                  key={country.code}
+                                  value={country.name}
+                                >
+                                  {country.name}
+                                </SelectItem>
+                              ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Add a short message (optional)</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder="Add your message here"
+                            className="resize-none"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <div className="space-y-[10px] !mb-6 md:!mb-10">
+                    <FormField
+                      control={form.control}
+                      name="content"
+                      render={({ field }) => (
+                        <FormItem className="flex flex-row items-start space-x-[10px] space-y-0 md:space-y-0">
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                              className="translate-y-2"
+                            />
+                          </FormControl>
+                          <div className="leading-none">
+                            <FormLabel>
+                              Sign me up for relevant content and offers from
+                              Scaleup Finance.
+                            </FormLabel>
+                          </div>
+                        </FormItem>
+                      )}
+                    />
+                    <p className="text-[#454F5B] text-sm lg:text-base">
+                      You can unsubscribe from these communications at any time.
+                      For more information on how to unsubscribe, our privacy
+                      practices, and how we are committed to protecting and
+                      respecting your privacy, please review our Privacy Policy.
+                      By clicking submit below, you consent Scaleup Finance
+                      storing and processing your personal information submitted
+                      above to provide you with the services and information
+                      requested.
+                    </p>
+                  </div>
+                  <div className="flex justify-center">
+                    <Button
+                      type="submit"
+                      className="align-center min-w-[226px]"
+                      disabled={isLoading}
+                    >
+                      {isLoading ? (
+                        <BeatLoader color="#fff" size={16} />
+                      ) : (
+                        <>
+                          Explore Our Services <ArrowIcon />
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                </form>
+              </Form>
+            </div>
+            <figure className="absolute top-0 left-0 h-full w-full">
               <img
                 src={formBg}
                 alt=""
@@ -279,7 +289,7 @@ const ContactUs = () => {
               />
             </figure>
           </div>
-        </div>
+        </Container>
       </section>
     </>
   );
