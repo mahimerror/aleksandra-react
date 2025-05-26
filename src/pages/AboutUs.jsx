@@ -85,7 +85,7 @@ const AboutUs = () => {
                 )}
               </div>
             ) : (
-              <figure className="relative h-[600px] aspect-video rounded-2xl overflow-hidden z-10">
+              <figure className="relative md:h-[350px] lg:h-[450px] xl:h-[600px] aspect-video rounded-2xl overflow-hidden z-10">
                 <img
                   src={
                     data?.data?.thumbnail
@@ -96,7 +96,7 @@ const AboutUs = () => {
                   className="w-full h-full object-cover brightness-50"
                 />
                 <button
-                  className="absolute inset-0 flex items-center justify-center"
+                  className="absolute inset-0 flex items-center justify-center scale-[0.6] md:scale-[0.75] lg:scale-100"
                   onClick={() => setIsVideoOpen(true)}
                 >
                   <div className="bg-yellow-500 group rounded-full size-24 flex items-center justify-center shadow-lg hover:scale-105 transition-transform">

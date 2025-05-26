@@ -71,7 +71,7 @@ const Services = () => {
             </div>
           ) : isPending ? (
             <div className="flex items-center justify-center h-[400px]">
-              <PropagateLoader color="#DDA923" size={40} />
+              <PropagateLoader color="#CBA135" size={40} />
             </div>
           ) : (
             <div className="flex items-center justify-center h-[400px]">

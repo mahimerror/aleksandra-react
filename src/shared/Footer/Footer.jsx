@@ -21,7 +21,7 @@ function Footer() {
             to={isPending || !data?.facebook_link ? "#" : data.facebook_link}
             className="group flex gap-1 sm:gap-2 items-center"
           >
-            <div className="size-6 md:size-[30px] flex justify-center items-center bg-white group-hover:bg-[#CBA135] rounded-full transition-all duration-300">
+            <div className="size-6 md:size-[30px] flex justify-center items-center bg-white group-hover:bg-primary rounded-full transition-all duration-300">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
@@ -38,7 +38,7 @@ function Footer() {
             to={isPending || !data?.linkedin_link ? "#" : data.linkedin_link}
             className="group flex gap-1 sm:gap-2 items-center"
           >
-            <div className="size-6 md:size-[30px] flex justify-center items-center bg-white group-hover:bg-[#CBA135] rounded-full transition-all duration-300">
+            <div className="size-6 md:size-[30px] flex justify-center items-center bg-white group-hover:bg-primary rounded-full transition-all duration-300">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"

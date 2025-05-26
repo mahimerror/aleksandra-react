@@ -240,11 +240,11 @@ const ContactUs = () => {
                             <Checkbox
                               checked={field.value}
                               onCheckedChange={field.onChange}
-                              className="translate-y-2"
+                              className="translate-y-1 sm:translate-y-0"
                             />
                           </FormControl>
                           <div className="leading-none">
-                            <FormLabel>
+                            <FormLabel className="leading-[120%]">
                               Sign me up for relevant content and offers from
                               Scaleup Finance.
                             </FormLabel>

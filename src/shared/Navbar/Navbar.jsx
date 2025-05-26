@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
-import { IoIosMenu } from "react-icons/io";
+import { IoMenu } from "react-icons/io5";
 
 function Navbar({ istrue = false }) {
   const location = useLocation().pathname;
@@ -56,7 +56,7 @@ function Navbar({ istrue = false }) {
               className="bg-white rounded-sm p-2"
               onClick={() => setOpen(true)}
             >
-              <IoIosMenu size={24} className="text-primary cursor-pointer" />
+              <IoMenu size={24} className="text-primary cursor-pointer" />
             </div>
 
             <div
@@ -128,7 +128,7 @@ const MobNavItem = ({ children, path }) => (
         "w-3/4 mx-auto text-lg font-medium capitalize transition-all duration-300 flex justify-center relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:transform after:transition-transform after:duration-300",
         isActive
           ? "text-primary after:bg-primary after:scale-x-100"
-          : "text-[#1B365D] hover:after:bg-[#1B365D] hover:after:scale-x-100"
+          : "text-[#212B36] hover:text-[#1B365D] hover:after:bg-[#1B365D] hover:after:scale-x-100"
       )
     }
   >
