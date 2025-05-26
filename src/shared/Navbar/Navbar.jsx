@@ -24,13 +24,13 @@ function Navbar({ istrue = false }) {
       <Container>
         <nav
           className={cn(
-            "flex items-center justify-between gap-2 p-6 rounded-b-3xl transition-colors duration-300",
+            "flex flex-row-reverse md:flex-row items-center justify-between gap-2 pl-4 pr-2 py-2 md:pl-6 md:pr-4 md:py-4 lg:p-6 rounded-b-xl md:rounded-b-2xl lg:rounded-b-3xl transition-colors duration-300",
             scrolled ? "bg-[#1B365D] shadow-lg" : "bg-white/20"
           )}
         >
           <div className="w-[137px] hidden lg:block"></div>
 
-          <div className="">
+          <div className="hidden md:block">
             <ul className="flex list-none items-center gap-8">
               <li>
                 <NavItem path="/">Home</NavItem>
@@ -47,16 +47,16 @@ function Navbar({ istrue = false }) {
             </ul>
           </div>
 
-          <Link to="/contact-us">
-            <Button>Contact Us</Button>
+          <Link to="/contact-us" >
+            <Button className="rounded-sm md:rounded-md">Contact Us</Button>
           </Link>
 
-          <div className="flex gap-5">
+          <div className="flex gap-5 md:hidden">
             <div
               className="bg-white rounded-sm p-2"
               onClick={() => setOpen(true)}
             >
-              <IoIosMenu size={24} className=" text-[#DDA923] cursor-pointer" />
+              <IoIosMenu size={24} className="text-primary cursor-pointer" />
             </div>
 
             <div
@@ -78,7 +78,7 @@ function Navbar({ istrue = false }) {
                       <RxCross2 size={24} />
                     </button>
                   </div>
-                  <ul className="mt-10 space-y-4 text-base">
+                  <ul className="mt-10 space-y-5 text-base">
                     <li>
                       <MobNavItem path="/">Home</MobNavItem>
                     </li>
@@ -125,7 +125,7 @@ const MobNavItem = ({ children, path }) => (
     to={path}
     className={({ isActive }) =>
       cn(
-        "text-lg font-medium capitalize transition-all duration-300 flex justify-center relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:transform after:transition-transform after:duration-300",
+        "w-3/4 mx-auto text-lg font-medium capitalize transition-all duration-300 flex justify-center relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:transform after:transition-transform after:duration-300",
         isActive
           ? "text-primary after:bg-primary after:scale-x-100"
           : "text-[#1B365D] hover:after:bg-[#1B365D] hover:after:scale-x-100"

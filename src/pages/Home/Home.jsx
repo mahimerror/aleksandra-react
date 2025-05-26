@@ -16,7 +16,7 @@ function Home() {
 
   return (
     <>
-      <section className="banner relative pb-28 md:pb-32 lg:pt-32 lg:pb-40 xl:pt-[240px] xl:pb-[300px] mb-10 md:mb-16 lg:mb-20 xl:mb-[120px]">
+      <section className="banner relative py-28 md:py-32 lg:pt-32 lg:pb-40 xl:pt-[240px] xl:pb-[300px] mb-10 md:mb-16 lg:mb-20 xl:mb-[120px]">
         <Container className="flex flex-col md:flex-row items-center justify-betwee gap-8 lg:gap-12 z-10 relative">
           <div className="w-[70%] md:w-[40%] lg:w-[38%] xl:w-[33%] shrink-0 md:-translate-y-4">
             <img src={logo} alt="Logo" className="object-cover" />
