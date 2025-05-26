@@ -30,7 +30,7 @@ const ServicesSection = () => {
           </div>
         </div>
 
-        <div className="rounded-[30px] overflow-hidden">
+        <div className="rounded-[20px] md:rounded-[30px] overflow-hidden">
           {data?.data ? (
             <Swiper
               slidesPerView={1}
@@ -59,7 +59,7 @@ const ServicesSection = () => {
             >
               {data?.data?.map((item, idx) => (
                 <SwiperSlide key={idx} className="!h-auto">
-                  <div className="p-6 rounded-[30px] bg-[#FCFCFC] border border-[#DFE3E8] h-full flex flex-col items-center justify-center gap-6">
+                  <div className="p-6 rounded-[20px] md:rounded-[30px] bg-[#FCFCFC] border border-[#DFE3E8] h-full flex flex-col items-center justify-center gap-6">
                     <figure className="h-[160px]">
                       <img
                         src={

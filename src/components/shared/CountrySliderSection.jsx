@@ -7,18 +7,12 @@ const CountrySliderSection = () => {
     `${import.meta.env.VITE_BASE_URL}/place-slider/list`
   );
 
-  console.log("CountrySliderSection data:", data);
   return (
-    <section className="my-[120px]">
-      <Container className={"grid grid-cols-3 gap-5"}>
-        {data?.data?.map((item) => (
-          <CountrySlider key={item.id} />
-        ))}
-        {/* <>
-          <CountrySlider />
-          <CountrySlider />
-          <CountrySlider />
-        </> */}
+    <section className="my-10 md:my-16 lg:my-20 xl:my-[120px]">
+      <Container className={"grid grid-cols-1 md:grid-cols-3 gap-3 lg:gap-5"}>
+        {data?.data?.map((item) => {
+          return <CountrySlider key={item.id} data={item.place_sliders} />;
+        })}
       </Container>
     </section>
   );
