@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const AboutUs = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
-  const { data } = useFetchData(
+  const { data, isPending } = useFetchData(
     `${import.meta.env.VITE_BASE_URL}/about-us/show/1`
   );
 
@@ -78,6 +78,10 @@ const AboutUs = () => {
               <div className="relative md:h-[350px] lg:h-[450px] xl:h-[600px] aspect-video rounded-2xl overflow-hidden z-10">
                 {data?.data?.video ? (
                   <CustomVideoPlayer videoUrl={data.data.video} />
+                ) : isPending ? (
+                  <div className="h-full aspect-video flex justify-center items-center bg-[#1B365D] text-primary text-center text-lg md:text-xl lg:text-2xl xl:text-3xl font-semibold">
+                    Loading...
+                  </div>
                 ) : (
                   <div className="h-full aspect-video flex justify-center items-center bg-[#1B365D] text-primary text-center text-lg md:text-xl lg:text-2xl xl:text-3xl font-semibold">
                     Sorry, we couldn&apos;t find the video.
