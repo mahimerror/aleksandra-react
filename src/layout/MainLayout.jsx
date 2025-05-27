@@ -4,11 +4,14 @@ import Footer from "../shared/Footer/Footer";
 
 function MainLayout() {
   const location = useLocation().pathname;
+  console.log("Current location:", location);
   return (
     <div>
       <ScrollRestoration />
-      {location !== "/team" && <Navbar></Navbar>}
-      <Outlet></Outlet>
+      {location == "/team" ? <Navbar istrue={true} /> : <Navbar></Navbar>}
+      <div className="-mt-[64px] md:-mt-[80px] lg:-mt-[96px]">
+        <Outlet></Outlet>
+      </div>
       <Footer></Footer>
     </div>
   );

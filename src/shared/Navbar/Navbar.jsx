@@ -1,26 +1,32 @@
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { IoMenu } from "react-icons/io5";
 
 function Navbar({ istrue = false }) {
-  const location = useLocation().pathname;
   const [scrolled, setScrolled] = useState(istrue);
   const [isOpen, setOpen] = useState(false);
+  console.log("Current value:", istrue, scrolled);
 
   useEffect(() => {
+    if (istrue) {
+      setScrolled(true);
+      return;
+    }
+
     const handleScroll = () => {
-      setScrolled(istrue || window.scrollY > 20);
+      setScrolled(window.scrollY > 20);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [location]);
+  }, [istrue]);
 
   return (
-    <header className="fixed top-0 z-50 w-full">
+    <header className="sticky top-0 z-50 w-full">
       <Container>
         <nav
           className={cn(
@@ -47,7 +53,7 @@ function Navbar({ istrue = false }) {
             </ul>
           </div>
 
-          <Link to="/contact-us" >
+          <Link to="/contact-us">
             <Button className="rounded-sm md:rounded-md">Contact Us</Button>
           </Link>
 

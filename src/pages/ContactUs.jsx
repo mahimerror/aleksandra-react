@@ -119,7 +119,7 @@ const ContactUs = () => {
         </figure>
       </section>
 
-      <section className="-translate-y-[260px] -mb-48 md:-mb-40 lg:-mb-32 xl:-mb-20">
+      <section className="-translate-y-[260px] -mb-36 md:-mb-40 lg:-mb-32 xl:-mb-20">
         <Container>
           <div className="max-w-[900px] py-6 px-5 md:p-10 lg:p-[60px] mx-auto rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden relative bg-[#DDE4E1]">
             <div className="relative z-10">

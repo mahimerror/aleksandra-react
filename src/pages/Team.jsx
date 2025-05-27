@@ -13,7 +13,6 @@ const Team = () => {
 
   return (
     <div className="min-h-screen overflow-hidden">
-      <Navbar istrue={true} />
       <section className="pt-[90px] md:pt-[120px] lg:pt-[200px] xl:pt-[230px] pb-10 md:pb-16 lg:pb-20 xl:pb-[120px] relative">
         {isPending ? (
           <div className="flex justify-center items-center py-48">
